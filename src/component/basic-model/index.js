@@ -8,12 +8,7 @@ import "./index.css";
 
 export default function BasicModal({ open, handleClose }) {
   const navigate = useNavigate();
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-  };
+
   return (
     <div>
       <Modal
@@ -22,9 +17,9 @@ export default function BasicModal({ open, handleClose }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} className="model">
+        <Box className="modal-content">
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Please, Login in first!
+            Please, login first!
           </Typography>
           <Button
             onClick={() => {
