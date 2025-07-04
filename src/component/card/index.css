@@ -1,0 +1,105 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: bold !important;
+  text-align: justify;
+}
+.details {
+  overflow: hidden;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* Optional: space between each card content */
+  /* padding: 10px; */
+  background-color: rgb(244, 238, 238);
+  height: 50px;
+  margin: 0;
+}
+
+.footer-box {
+  display: flex;
+  margin: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px; /* Space between icon and number */
+  /* background-color: bisque; */
+}
+
+.icon {
+  font-size: 10px;
+  color: #555;
+}
+#footerBox {
+  margin-top: 8px;
+}
+.paragraphTag {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+#comntSec {
+  /* background-color: bisque; */
+}
+#comntParag {
+  margin-bottom: 2px;
+}
+.card {
+  cursor: pointer;
+}
+.card {
+  height: 100%;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Media wrapper */
+.mediaImgVideo {
+  width: 100%;
+  height: 200px; /* Fixed height for uniformity */
+  /* background-color: aquamarine- !important; */
+  overflow: hidden;
+  /* padding: 0 10px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Images inside media */
+.mediaImgVideo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: 8px; */
+}
+
+/* Videos inside media */
+.mediaImgVideo video,
+.mediaImgVideo iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: 8px; */
+}
+
+/* Optional: if you're using ReactPlayer */
+.mediaImgVideo > div {
+  width: 100% !important;
+  height: 100% !important;
+  /* border-radius: 8px; */
+  overflow: hidden;
+}

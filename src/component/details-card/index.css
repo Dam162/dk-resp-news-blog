@@ -1,0 +1,179 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.title {
+  font-weight: bold !important;
+  text-align: justify;
+}
+.blogDetails {
+  text-align: justify;
+}
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* Optional: space between each card content */
+  background-color: rgb(244, 238, 238);
+  margin: 0;
+}
+
+.footer-box {
+  display: flex;
+  margin: 0;
+  flex-wrap: wrap;
+  align-self: center;
+  gap: 8px; /* Space between icon and number */
+}
+
+.icon {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  color: #555;
+  margin: 0px;
+}
+
+
+.iconButtonSec {
+  /* background-color: #1976d2; */
+  padding: 0;
+  margin: 4px;
+}
+
+@media screen and (max-width: 300px) {
+  .iconButtonSec {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin: 0px;
+  }
+}
+
+.paragraphTag {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+#footerBox {
+  margin-top: 8px;
+}
+#comntParag {
+  margin-bottom: 2px;
+}
+.card {
+  cursor: pointer;
+}
+.media {
+  /* padding: 0px 10px; */
+}
+
+.media img,
+.media video {
+  width: 100%;
+  height: auto;
+  max-height: 500px; /* optional: controls max height */
+  object-fit: cover;
+  /* border-radius: 8px; */
+}
+
+.MuiCard-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.like-btn {
+  margin: 0px;
+  background: none !important;
+}
+.like-btn > p {
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 600px) {
+  .emptyGrid {
+    display: none;
+  }
+}
+
+.share-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.share-Handle-Sec {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 10px;
+}
+.commentTextSec {
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 6px;
+  padding: 10px 0px;
+}
+.buttonAndParag {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 5px;
+}
+.share-icon {
+  margin-right: 10px;
+}
+
+.allSocialButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3px;
+}
+.copyURL {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.TextField {
+  padding: 10px;
+}
+.URL-copy {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.textURLBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.textURL {
+  width: 100% !important;
+}
+.Avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  /* border: 1px solid; */
+}
+
+.userComments-Sec {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.headingTwo {
+  margin: 5px 0px;
+  text-align: center;
+}

@@ -1,0 +1,148 @@
+/* Reset box sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+}
+
+.signIn-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.signIn-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.signIn-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signIn-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.social-button:hover {
+  background-color: #f0f0f0;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.separator {
+  text-align: center;
+  margin: 15px 0;
+  position: relative;
+  font-size: 14px;
+  color: #666;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.separator::before {
+  left: 0;
+}
+
+.separator::after {
+  right: 0;
+}
+
+.signIn-input {
+  margin-top: 15px;
+}
+
+.forgot-pass {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  margin-top: 10px;
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.forgot-pass:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  margin-top: 20px;
+  background-color: #1976d2 !important;
+  color: white;
+  font-weight: bold;
+  text-transform: none !important;
+}
+
+.no-Account {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.no-Account a {
+  color: #1976d2;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.no-Account a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .signIn-card {
+    padding: 20px 15px;
+  }
+
+  .signIn-title {
+    font-size: 20px;
+  }
+}

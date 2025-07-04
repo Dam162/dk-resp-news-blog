@@ -1,0 +1,47 @@
+/* .model {
+  background-color: aquamarine !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around !important;
+  border-radius: 10px;
+  width: 50% !important;
+  border: 2px solid white !important;
+}
+.login-btn {
+  background-color: chocolate;
+  margin-top: 8px;
+}
+#modal-modal-title {
+  background-color: bisque;
+  margin-bottom: 8px;
+} */
+
+.model {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .model {
+    width: 400px;
+    padding: 30px;
+  }
+}
+
+.login-btn {
+  text-transform: none;
+  font-weight: 600;
+  padding: 8px 24px;
+  font-size: 16px;
+}

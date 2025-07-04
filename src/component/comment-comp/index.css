@@ -1,0 +1,79 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.paper {
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.avatarGrid {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.headingFour {
+  margin: 0;
+  text-align: left;
+}
+.dateParagraph {
+  text-align: left;
+  color: gray;
+  margin: 0;
+  padding: 0;
+}
+.commentText {
+  margin: 8px 0px;
+  font-weight: 100 !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+@media screen and (max-width: 900px) {
+  .avatarGrid {
+    justify-content: center !important;
+  }
+  .headingFour {
+    text-align: center !important;
+  }
+  .dateParagraph {
+    text-align: center !important;
+  }
+  .commentText {
+    text-align: center !important;
+  }
+}
+@media screen and (max-width: 600px) {
+ .replyGridButton{
+  margin-top: 8px;
+ }
+}
+.replyBox {
+  margin-top: 15px;
+  /* background-color: aquamarine; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.replyTextField {
+  /* background-color: blueviolet; */
+  width: 100% !important;
+  width: 84%;
+  border-radius: 4px;
+}
+.replyButtonField {
+  /* background-color: green; */
+  color: white;
+  width: 100%;
+  /* height: 100%; */
+  border-radius: 4px;
+}
+.replyGridButton {
+  /* margin-top: 8px; */
+  display: flex;
+  justify-content: flex-end;
+  background-color: bisque;
+}
+.replyTextGrid {
+  /* background-color: chartreuse; */
+}
