@@ -21,30 +21,47 @@ const Home = () => {
   useEffect(() => {
     const q = query(collection(db, "dk-blogs"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const newBlogs = [];
       const fetchData = async () => {
+        const newBlogs = [];
+
         for (const blogRes of querySnapshot.docs) {
-          const blogData = blogRes.data();
-          const userRef = doc(db, "users", blogData.userID);
-          const UserSnap = await getDoc(userRef);
-          const userData = UserSnap.data();
+          const blogData = blogRes?.data();
+          const userID = blogData?.userID;
+
+          let userData = {};
+          if (userID) {
+            const userRef = doc(db, "users", userID);
+            const userSnap = await getDoc(userRef);
+            if (userSnap?.exists()) {
+              userData = userSnap.data();
+            } else {
+              console.warn(`User document not found for userID: ${userID}`);
+            }
+          }
+
           newBlogs.push({ ...blogData, ...userData });
         }
-        setBlogs([...newBlogs]);
+
+        setBlogs(newBlogs);
         setLoading(false);
-        return;
       };
 
-      fetchData();
+      fetchData().catch((err) => {
+        console.error("Error fetching blogs:", err);
+        setLoading(false);
+      });
     });
-    console.log("unsubscribe", unsubscribe);
-  }, []);
+
+    return () => unsubscribe(); // clean up
+  }, [db]);
+
   const filteredData = blogs
     .filter((item) =>
-      item.blogTitle.toLowerCase().includes(search.toLowerCase())
+      item.blogTitle?.toLowerCase().includes(search.toLowerCase())
     )
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); //
-  console.log(filteredData);
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  // console.log(filteredData);
 
   return (
     <div>
@@ -66,14 +83,12 @@ const Home = () => {
           variant="outlined"
         />
       </Box>
+
       {loading ? (
-        <Card data={filteredData} loading={loading} />
+        <Card data={[]} loading={loading} />
       ) : filteredData.length === 0 ? (
         <Box
-          component="form"
           sx={{ "& > :not(style)": { width: "100%" } }}
-          noValidate
-          autoComplete="off"
           style={{ padding: "20px" }}
         >
           <h1 style={{ textAlign: "center" }}>Data Not Found!</h1>
@@ -81,7 +96,6 @@ const Home = () => {
       ) : (
         <Card data={filteredData} loading={loading} />
       )}
-      {/* <Card data={blogs} loading={loading} /> */}
     </div>
   );
 };

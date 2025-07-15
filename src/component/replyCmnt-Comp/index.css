@@ -1,0 +1,46 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.reply-cmnt-paper {
+  padding: 20px;
+  margin-top: 10px;
+  border: 1px solid #1976d2;
+  background-color: #f5f4f4;
+}
+
+.avatarGridReply {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.headingFourReply {
+  margin: 0;
+  text-align: left;
+}
+.dateParagraphReply {
+  text-align: left;
+  color: gray;
+  margin: 0;
+  padding: 0;
+}
+.replyCommentText {
+  margin: 8px 0px;
+  font-weight: 100 !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+@media screen and (max-width: 900px) {
+  .avatarGridReply {
+    justify-content: center !important;
+  }
+  .headingFourReply {
+    text-align: center !important;
+  }
+  .dateParagraphReply {
+    text-align: center !important;
+  }
+  .replyCommentText {
+    text-align: center !important;
+  }
+}

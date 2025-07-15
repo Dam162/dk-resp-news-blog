@@ -43,11 +43,11 @@ const CreateBlog = () => {
   const storage = getStorage();
 
   useEffect(() => {
-    console.log("-----------FileURL----------", fileURL);
+    // console.log("-----------FileURL----------", fileURL);
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        if (user.emailVerified) {
-          setUid(user.uid);
+        if (user?.emailVerified) {
+          setUid(user?.uid);
         } else {
           navigate("/email-verification");
         }
@@ -93,9 +93,9 @@ const CreateBlog = () => {
         userID: uid,
       };
       const docRef = await addDoc(collection(db, "dk-blogs"), newBlog);
-      const blogRef = doc(db, "dk-blogs", docRef.id);
+      const blogRef = doc(db, "dk-blogs", docRef?.id);
       await updateDoc(blogRef, {
-        blogID: docRef.id,
+        blogID: docRef?.id,
       });
       toast.success("New blog created...!!!", {
         position: "top-right",
@@ -110,7 +110,7 @@ const CreateBlog = () => {
   //   blogFileUplaod
   const blogFileUplaod = (e) => {
     const file = e.target.files[0];
-    console.log("--------------File------------>", file);
+    // console.log("--------------File------------>", file);
     if (
       file.type.slice(0, 5) === "image" ||
       file.type.slice(0, 5) === "video"

@@ -6,12 +6,14 @@
 .paper {
   padding: 20px;
   margin-top: 10px;
+  border: 1px solid #1976d2;
 }
 
 .avatarGrid {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  align-self: self-start;
 }
 .headingFour {
   margin: 0;
@@ -43,9 +45,9 @@
   }
 }
 @media screen and (max-width: 600px) {
- .replyGridButton{
-  margin-top: 8px;
- }
+  .replyGridButton {
+    margin-top: 8px;
+  }
 }
 .replyBox {
   margin-top: 15px;

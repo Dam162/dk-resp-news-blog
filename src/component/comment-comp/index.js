@@ -4,28 +4,45 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
 import Avatar from "@mui/material/Avatar";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
+import BasicModal from "../basic-model";
+import {
+  getFirestore,
+  getDoc,
+  updateDoc,
+  setDoc,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { toast } from "react-toastify";
+import ReplyCommentComp from "../replyCmnt-Comp";
 const CommentComponent = ({ data }) => {
+  // console.log("dataComment", data?.comment);
+  const userCommentsData = data?.comment;
   const [comments, setComments] = useState([]);
   const [replyComment, setReplyComment] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loadingIndex, setLoadingIndex] = useState(null);
+  const [modelOpen, setModelOpen] = useState(false);
+  const [commentRes, setCommentRes] = useState(false);
   const db = getFirestore();
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   useEffect(() => {
     const fetchData = async () => {
       let commentsData = [];
-      for (let index in data) {
-        const userRef = doc(db, "users", data[index].uid);
+      for (let index in userCommentsData) {
+        const userRef = doc(db, "users", userCommentsData[index].uid);
         const userSnap = await getDoc(userRef);
         if (userSnap.exists()) {
           commentsData.push({
-            ...data[index],
+            ...userCommentsData[index],
             ...userSnap.data(),
+            blogID: userCommentsData[index].uid,
           });
         }
       }
@@ -33,6 +50,10 @@ const CommentComponent = ({ data }) => {
     };
     fetchData();
   }, [data, db]);
+  // console.log(
+  //   "CCCCCCCCCCCCooooooooooooooMMMMMMMMMeeeeeennnnnnnnnttttttttttttSSSS",
+  //   comments
+  // );
 
   const handleReplyChange = (index, value) => {
     setReplyComment((prev) => ({
@@ -40,17 +61,72 @@ const CommentComponent = ({ data }) => {
       [index]: value,
     }));
   };
-
   let sortComments = comments?.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
-  console.log("sort Comments", sortComments);
+
+  // replyCommentHandlder
+
+  const replyCommentHandler = async (originalIndex) => {
+    if (!user) {
+      setModelOpen(true);
+      return;
+    }
+
+    setLoadingIndex(originalIndex);
+
+    try {
+      const currentReplies = Array.isArray(
+        data.comment[originalIndex]?.replyComment
+      )
+        ? [...data.comment[originalIndex].replyComment]
+        : [];
+
+      currentReplies.push({
+        replyCommentText: replyComment[originalIndex],
+        createdAt: moment().format(),
+        uid: user.uid,
+      });
+
+      const updatedComments = [...data.comment];
+      updatedComments[originalIndex] = {
+        ...updatedComments[originalIndex],
+        replyComment: currentReplies,
+      };
+
+      const blogRef = doc(db, "dk-blogs", data.blogID);
+
+      await updateDoc(blogRef, {
+        comment: updatedComments,
+      });
+
+      setReplyComment((prev) => ({
+        ...prev,
+        [originalIndex]: "",
+      }));
+
+      toast.success("Replied successfully!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Error replying!");
+    } finally {
+      setLoadingIndex(null);
+    }
+  };
+
   return (
     <div style={{ width: "100%" }}>
+      <BasicModal open={modelOpen} handleClose={() => setModelOpen(false)} />
       {sortComments?.map((item, index) => {
-        console.log("item", item);
+        // console.log("item", item);
+        const originalIndex = data.comment.findIndex(
+          (c) =>
+            c.uid === item?.uid &&
+            c.commentText === item?.commentText &&
+            c.createdAt === item?.createdAt
+        );
         return (
-          <Paper key={index} className="paper">
+          <Paper key={originalIndex} className="paper">
             <Grid
               className="mainGridComp"
               container
@@ -83,15 +159,13 @@ const CommentComponent = ({ data }) => {
                 <p className="dateParagraph">
                   {moment(item?.createdAt).fromNow()}
                 </p>
-
-                {/* <Grid className="replyBox" container spacing={1}> */}
-
-                {/* </Grid> */}
+                {!item?.comment?.replyComment && (
+                  <ReplyCommentComp data={item} commentIndex={originalIndex} />
+                )}
 
                 <Box
                   className="replyBox"
                   component="form"
-                  // sx={{ "& > :not(style)": {   width: "100%" } }}
                   noValidate
                   autoComplete="off"
                 >
@@ -105,8 +179,10 @@ const CommentComponent = ({ data }) => {
                       label="Reply"
                       variant="outlined"
                       size="small"
-                      value={replyComment[index] || ""}
-                      onChange={(e) => handleReplyChange(index, e.target.value)}
+                      value={replyComment[originalIndex] || ""}
+                      onChange={(e) =>
+                        handleReplyChange(originalIndex, e.target.value)
+                      }
                     />
                   </Grid>
                   <Grid
@@ -116,9 +192,13 @@ const CommentComponent = ({ data }) => {
                     <Button
                       className="replyButtonField"
                       variant="contained"
-                      disabled={!replyComment[index]}
+                      onClick={() => replyCommentHandler(originalIndex)}
+                      disabled={
+                        !replyComment[originalIndex] ||
+                        loadingIndex === originalIndex
+                      }
                     >
-                      {loading ? (
+                      {loadingIndex === originalIndex ? (
                         <CircularProgress
                           style={{ color: "white" }}
                           size={20}

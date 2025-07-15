@@ -23,9 +23,10 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { getFirestore, updateDoc, doc, onSnapshot } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ReactPlayer from "react-player";
 import moment from "moment";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { v4 as uuidv4 } from "uuid";
 import "./index.css";
 import BasicModal from "../basic-model";
 import EditBlog from "../edit-blog-Details";
@@ -38,13 +39,13 @@ import { FacebookIcon, TwitterIcon, WhatsappIcon } from "react-share";
 const language = "en";
 
 function Media(props) {
-  const { loading, data, uid, likeHandler,edit} = props;
+  const { loading, data, uid, likeHandler, edit } = props;
   const isLiked = data?.like?.includes(uid);
   const routerLocation = useLocation();
   const [open, setOpen] = useState(false);
-  console.log("-------routerLocation--------", routerLocation);
+  // console.log("-------routerLocation--------", routerLocation);
 
-  console.log("------isliked------->", isLiked);
+  // console.log("------isliked------->", isLiked);
   return (
     <Card style={{ width: "100%" }}>
       <CardHeader
@@ -243,7 +244,7 @@ Media.propTypes = {
   loading: PropTypes.bool,
 };
 
-export default function DetailsCardCom({ data, loading, path,edit }) {
+export default function DetailsCardCom({ data, loading, path, edit }) {
   const auth = getAuth();
   const db = getFirestore();
   const navigate = useNavigate();
@@ -259,11 +260,11 @@ export default function DetailsCardCom({ data, loading, path,edit }) {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("----userData---", user.uid);
+        // console.log("----userData---", user.uid);
         setUid(user.uid);
         setAlreadyLogin(true);
-        const userResData = onSnapshot(doc(db, "users", user.uid), (doc) => {
-          console.log("Current-- user--dk-- data: ", doc.data());
+        const userResData = onSnapshot(doc(db, "users", user?.uid), (doc) => {
+          // console.log("Current-- user--dk-- data: ", doc?.data());
           const user = doc?.data();
           setUserData({ ...user });
         });
@@ -321,6 +322,7 @@ export default function DetailsCardCom({ data, loading, path,edit }) {
 
   //commentHandler
   const commentHandler = async () => {
+    // const uuid = uuidv4();
     console.log("data", data);
     if (alreadyLogin) {
       setCommentRes(true);
@@ -329,6 +331,8 @@ export default function DetailsCardCom({ data, loading, path,edit }) {
         commentText: commentText,
         createdAt: moment().format(),
         uid: uid,
+        // uuid: uuid,
+        replyComment: [],
       });
       const blogRef = doc(db, "dk-blogs", data?.blogID);
       await updateDoc(blogRef, {
@@ -510,7 +514,7 @@ export default function DetailsCardCom({ data, loading, path,edit }) {
                 ? `${data?.comment?.length} Comments`
                 : `${data?.comment?.length} Comment`}
             </h2>
-            <CommentComponent data={data?.comment} />
+            <CommentComponent data={data} />
           </div>
           <BasicModal
             open={modelOpen}

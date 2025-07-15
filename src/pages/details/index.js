@@ -21,12 +21,12 @@ const Details = () => {
     onAuthStateChanged(auth, async (user) => {
       console.log("------path------->>", path);
       const unsub = onSnapshot(doc(db, "dk-blogs", path), async (blogRes) => {
-        const blogData = blogRes.data();
-        console.log("Current data: ", blogRes.data());
+        const blogData = blogRes?.data();
+        // console.log("Current data: ", blogRes.data());
         if (blogRes.data()) {
-          const userRef = doc(db, "users", blogRes.data().userID);
+          const userRef = doc(db, "users", blogRes?.data()?.userID);
           const UserSnap = await getDoc(userRef);
-          const userData = UserSnap.data();
+          const userData = UserSnap?.data();
           setBlog({ ...blogData, ...userData });
           setLoading(false);
         } else {
