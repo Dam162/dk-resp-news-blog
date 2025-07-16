@@ -1,0 +1,68 @@
+/* Center the Box */
+.signUp-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Card styling */
+.signUp-container {
+  display: flex;
+  justify-content: center;
+}
+
+.signUp-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Title & Paragraphs */
+.signUp-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.enterPassword,
+.passwordParagraph {
+  font-size: 14px;
+  text-align: center;
+  color: #555;
+}
+.passwordParagraph {
+  margin-top: 10px;
+  color: red;
+}
+/* Input and Button styling */
+.signUp-input {
+  margin-top: 15px;
+}
+
+.signUp-button {
+  margin-top: 15px;
+}
+
+/* Link styling */
+.no-Account {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.no-Account a {
+  color: #1976d2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Remove underline on hover */
+.no-Account a:hover {
+  text-decoration: none;
+}

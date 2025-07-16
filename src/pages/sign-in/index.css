@@ -105,11 +105,13 @@ body, html {
   margin: 10px 0px;
   color: #1976d2;
   text-decoration: none;
+  cursor: pointer;
+}
+.forgot-pass:hover{
+  text-decoration: none;
 }
 
-.forgot-pass:hover {
-  text-decoration: underline;
-}
+
 
 .login-button {
   margin-top: 20px;

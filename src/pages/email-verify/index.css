@@ -1,22 +1,30 @@
-.head,.paragraph{
-    text-align: center;
-    margin: 10px 0px;
-    color: rgb(11, 127, 199);
-    /* font-size: larger;    */
+.head,
+.paragraph {
+  text-align: center;
+  margin: 10px 0px;
+  color: rgb(11, 127, 199);
+  /* font-size: larger;    */
 }
-.main-Cont{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
+.main-Cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
-.buttons{
-    margin: 10px 0px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 20%;
+.buttons {
+  margin: 10px 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 19%;
+  /* background-color: aquamarine; */
+}
+
+@media screen and (max-width: 992px) {
+  .buttons > button {
+    margin-top: 10px;
     /* background-color: aquamarine; */
+  }
 }

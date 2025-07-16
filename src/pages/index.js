@@ -8,7 +8,7 @@ import Details from "./details";
 import Dashboard from "./dashboard";
 import SlotsSignIn from "./sign-in";
 import SlotsSignUp from "./sign-up";
-
+import ForgotPassword from "./forgot_pass";
 export {
   Home,
   // Login,
@@ -20,4 +20,5 @@ export {
   Dashboard,
   SlotsSignIn,
   SlotsSignUp,
+  ForgotPassword,
 };

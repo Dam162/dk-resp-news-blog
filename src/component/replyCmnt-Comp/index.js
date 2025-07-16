@@ -58,8 +58,17 @@ const ReplyCommentComp = ({ data, commentIndex }) => {
 
         return (
           <Paper key={key} className="reply-cmnt-paper">
-            <Grid container spacing={2} className="mainGridComp">
-              <Grid item className="avatarGridReply">
+            <Grid
+              container
+              spacing={2}
+              className="mainGridComp"
+              size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
+            >
+              <Grid
+                item
+                className="avatarGridReply"
+                size={{ xl: 1, lg: 1, md: 1, sm: 12, xs: 12 }}
+              >
                 <Avatar
                   alt={item?.name || "User"}
                   src={item?.profileURL || ""}
@@ -67,7 +76,12 @@ const ReplyCommentComp = ({ data, commentIndex }) => {
                 />
               </Grid>
 
-              <Grid item className="insideGrid" zeroMinWidth>
+              <Grid
+                item
+                className="insideGrid"
+                // zeroMinWidth
+                size={{ xl: 11, lg: 11, md: 11, sm: 12, xs: 12 }}
+              >
                 <h4 className="headingFourReply">
                   {item?.name || "Anonymous"}
                 </h4>
@@ -85,4 +99,3 @@ const ReplyCommentComp = ({ data, commentIndex }) => {
 };
 
 export default ReplyCommentComp;
-  

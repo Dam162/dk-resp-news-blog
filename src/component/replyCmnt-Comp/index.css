@@ -29,6 +29,10 @@
   margin: 8px 0px;
   font-weight: 100 !important;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* background-color: blue; */
 }
 @media screen and (max-width: 900px) {
   .avatarGridReply {
@@ -41,6 +45,6 @@
     text-align: center !important;
   }
   .replyCommentText {
-    text-align: center !important;
+    justify-content: center !important;
   }
 }

@@ -70,6 +70,7 @@ const EmailVerification = () => {
           variant="contained"
           disabled={resendLoader}
           onClick={resendHandler}
+          className="emailVerifyButton"
         >
           {resendLoader ? (
             <CircularProgress style={{ color: "white" }} size={20} />
@@ -77,7 +78,11 @@ const EmailVerification = () => {
             "Resend"
           )}
         </Button>
-        <Button variant="contained" onClick={() => window.location.reload()}>
+        <Button
+          className="emailVerifyButton"
+          variant="contained"
+          onClick={() => window.location.reload()}
+        >
           Home
         </Button>
       </div>

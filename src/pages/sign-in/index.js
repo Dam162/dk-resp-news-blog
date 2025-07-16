@@ -135,9 +135,9 @@ export default function SlotsSignIn() {
   return (
     <Box className="signIn-box">
       <Grid container className="signIn-container">
+        <Grid item xs={false} sm={6} className="signIn-image-side"></Grid>
         <Grid item xs={12} sm={8} md={6} lg={4} className="signIn-card">
-          <h1 className="signIn-title">SIGN IN WITH</h1>
-
+          <h1 className="signIn-title">SIGN IN</h1>
           <div className="social-login">
             <button className="social-button" onClick={signInWithGoogleHandler}>
               <img className="social-icon" src={googleIcon} alt="Google" />
@@ -208,7 +208,10 @@ export default function SlotsSignIn() {
             />
           </FormControl>
 
-          <a className="forgot-pass" href="#">
+          <a
+            className="forgot-pass"
+            onClick={() => navigate("/forgot-password")}
+          >
             Forgot Password?
           </a>
 

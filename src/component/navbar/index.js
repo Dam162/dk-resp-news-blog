@@ -190,7 +190,7 @@ function Navbar() {
                 style={{ color: "white" }}
                 onClick={() => navigate("/sign-in")}
               >
-                Sign In
+                Login
               </Button>
             )}
 

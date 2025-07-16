@@ -9,7 +9,8 @@ import {
   Details,
   Dashboard,
   SlotsSignIn,
-  SlotsSignUp
+  SlotsSignUp,
+  ForgotPassword,
 } from "../../pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -26,6 +27,7 @@ const RouterNav = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/sign-in" element={<SlotsSignIn />} />
           <Route path="/sign-up" element={<SlotsSignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/blog-details/:id" element={<Details />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>

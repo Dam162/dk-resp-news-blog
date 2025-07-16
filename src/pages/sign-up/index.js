@@ -44,7 +44,7 @@ export default function SlotsSignUp() {
         position: "top-right",
       });
     } else if (email === "") {
-      toast.error("Email. required...!!!", {
+      toast.error("Email required...!!!", {
         position: "top-right",
       });
     } else if (password === "") {
